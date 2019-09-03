@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: "Sample Free EC2 Provision"
+Parameters:
+    InsanceTypeParam:
+        Type: String
+        Default: t2.micro
+        AllowedValues:
+            - t2.micro
+        Description: Param for Ec2 Type
+    ImageIdParam:
+        Type: String
+        Default: ami-01f7527546b557442
+        AllowedValues:
+            - ami-01f7527546b557442
+            - ami-0fb6b6f9e81056553
+            - ami-03b6f27628a4569c8
+        Description: Parameter for Image Id first one is for linux ami
+    AvailabilityZoneParam:
+        Type: String
+        Default: ap-southeast-1a
+        AllowedValues:
+            - ap-southeast-1a
+            - ap-southeast-1b
+            - ap-southeast-1c
+        Description: "Parameter for Availability Zone"
+Resources:
+    MyInstance:
+        Type: AWS::EC2::Instance
+        Properties:
+            AvailabilityZone: !Ref AvailabilityZoneParam
+            ImageId: !Ref ImageIdParam
+            InstanceType: !Ref InsanceTypeParam
+Outputs:
+    WebsiteURL:
+    Value: !GetAtt MyInstance.PublicDnsName
+    Description: "Public IP Output"
