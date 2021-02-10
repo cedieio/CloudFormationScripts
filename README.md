@@ -1,4 +1,4 @@
-# CloudFormationScripts
+## CloudFormationScripts
 Sample scripts for cloud formation.
-Moslty yaml files !
+Moslty yaml
 Json files will be posted soon.
